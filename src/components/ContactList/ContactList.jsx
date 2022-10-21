@@ -1,16 +1,19 @@
-import PropTypes from 'prop-types';
-import { List } from './ContactList.styled';
+import { useFilterArray } from 'components/hooks/useFilterArray';
 import ContactListItem from 'components/ContactListItem/ContactListItem';
+import { useSelector } from 'react-redux';
+import { contactSelector, filterSelector } from 'redux/selectors';
+import { List } from './ContactList.styled';
 
-const ContactList = ({ contacts, onDelete }) => {
+const ContactList = () => {
+  const { contacts } = useSelector(contactSelector);
+  const { filter } = useSelector(filterSelector);
+
+  const contactsList = useFilterArray(contacts, filter);
   return (
     <List>
-      <ContactListItem contacts={contacts} onDelete={onDelete} />
+      <ContactListItem contacts={contactsList} />
     </List>
   );
 };
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.shape),
-  onDelete: PropTypes.func,
-};
+
 export default ContactList;

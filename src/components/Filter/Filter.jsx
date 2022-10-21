@@ -1,10 +1,19 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Input, Label } from './Filter.styled';
-const SearchContactFilter = ({ changeFilter }) => {
+import { filterContacts } from 'redux/filterSlice';
+
+const SearchContactFilter = () => {
+  const dispatch = useDispatch();
+
+  const handleFilterChange = e => {
+    dispatch(filterContacts(e.target.value));
+  };
+
   return (
     <>
       <Label htmlFor="search">Find contacts by name</Label>
-      <Input type="text" id="search" onChange={changeFilter} />
+      <Input type="text" id="search" onChange={handleFilterChange} />
     </>
   );
 };

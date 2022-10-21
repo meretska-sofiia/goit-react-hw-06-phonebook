@@ -1,59 +1,25 @@
+import { useSelector } from 'react-redux';
+import { contactSelector } from 'redux/selectors';
 import { ContactForm } from '../AddContactForm/AddContactForm';
-// eslint-disable-next-line
 import ContactList from '../ContactList/ContactList';
-// eslint-disable-next-line
 import SearchContactFilter from '../Filter/Filter';
 import { Container, Title } from './App.styled';
 
-// const COUNTER_KEY = 'contacts';
-
-// const getLocalStorage = () => {
-//   return JSON.parse(localStorage.getItem(COUNTER_KEY));
-// };
-
 export const App = () => {
-  // const [contacts, setContacts] = useState(() => getLocalStorage() ?? []);
-  // const [filter, setFilter] = useState('');
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
-  // const handleAddContactClick = ({ name, number }) => {
-  //   const nameArray = contacts.map(({ name }) => name);
-
-  //   if (nameArray.includes(name)) {
-  //     alert(`${name} is already in contacts`);
-  //   } else {
-  //     setContacts(prev => (prev = [...prev, { id: nanoid(), name, number }]));
-  //   }
-  // };
-
-  // const changeFilter = e => {
-  //   setFilter(e.target.value);
-  // };
-
-  // const handlerDeleteItem = id => {
-  //   setContacts(prev => prev.filter(contact => contact.id !== id));
-  // };
+  const { contacts } = useSelector(contactSelector);
 
   return (
     <Container>
       <Title>Phonebook</Title>
       <ContactForm />
-      {/* {!!contacts?.length && (
+      {!!contacts.length && (
         <>
           <Title>Contacts</Title>
-          <SearchContactFilter changeFilter={changeFilter} />
+          <SearchContactFilter />
 
-          <ContactList
-            contacts={contacts.filter(contact =>
-              contact.name.toLowerCase().includes(filter.toLowerCase())
-            )}
-            onDelete={handlerDeleteItem}
-          />
+          <ContactList />
         </>
-      )} */}
+      )}
     </Container>
   );
 };
