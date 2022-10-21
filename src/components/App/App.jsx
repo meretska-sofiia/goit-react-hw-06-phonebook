@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-
 import { ContactForm } from '../AddContactForm/AddContactForm';
+// eslint-disable-next-line
 import ContactList from '../ContactList/ContactList';
+// eslint-disable-next-line
 import SearchContactFilter from '../Filter/Filter';
 import { Container, Title } from './App.styled';
 
